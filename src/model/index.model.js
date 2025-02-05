@@ -1,13 +1,15 @@
+require('dotenv').config();
 const mysql = require('mysql');
 const model = {}
 const express = require('express');
+
 const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "Smand.com2772",
-    database: "moviescrud",
-    port: 3306
-})
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PSSW,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT
+});
 
 model.addMovieModel = (values) => {
     return new Promise((resolve, reject) => {
