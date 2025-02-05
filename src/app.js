@@ -6,5 +6,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(routes);
+app.listen(3307, () => {
+    console.log("Listening in port 3307...");
+})
 
 module.exports = app;
