@@ -1,5 +1,6 @@
 require('dotenv').config();
-const mysql = require('mysql');
+const mysql = require('mysql2');
+const fs = require('fs');
 const model = {}
 const express = require('express');
 
@@ -8,8 +9,12 @@ const db = mysql.createConnection({
     user: process.env.DB_USER,
     password: process.env.DB_PSSW,
     database: process.env.DB_NAME,
-    port: process.env.DB_PORT
+    port: process.env.DB_PORT,
+    ssl: {
+        ca: fs.readFileSync(process.env.CA_PEM)
+    }
 });
+
 
 model.addMovieModel = (values) => {
     return new Promise((resolve, reject) => {
